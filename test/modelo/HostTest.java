@@ -46,7 +46,44 @@ public class HostTest {
 
     @Test
     public void validarMascara() {
+        assertTrue(Host.validarMascara("255.0.0.0"));
+        assertTrue(Host.validarMascara("254.0.0.0"));
+        assertTrue(Host.validarMascara("252.0.0.0"));
+        assertTrue(Host.validarMascara("192.0.0.0"));
+        assertFalse(Host.validarMascara("256.0.0.0"));
+        assertFalse(Host.validarMascara("194.0.0.0"));
+        assertFalse(Host.validarMascara("10.0.0.0"));
+        assertFalse(Host.validarMascara("20.0.0.0"));
+        assertFalse(Host.validarMascara("0.0.0.0"));
+
+        //Pruebas en el segundo octeto
+        assertTrue(Host.validarMascara("255.255.0.0"));
+        assertTrue(Host.validarMascara("255.254.0.0"));
+        assertTrue(Host.validarMascara("255.252.0.0"));
+        assertTrue(Host.validarMascara("255.192.0.0"));
+        assertFalse(Host.validarMascara("255.256.0.0"));
+        assertFalse(Host.validarMascara("255.194.0.0"));
+        assertFalse(Host.validarMascara("255.10.0.0"));
+        assertFalse(Host.validarMascara("255.20.0.0"));
+
+        //Pruebas en el tercer octeto
         assertTrue(Host.validarMascara("255.255.255.0"));
+        assertTrue(Host.validarMascara("255.255.254.0"));
+        assertTrue(Host.validarMascara("255.255.252.0"));
+        assertTrue(Host.validarMascara("255.255.128.0"));
+        assertFalse(Host.validarMascara("255.255.197.0"));
+        assertFalse(Host.validarMascara("255.255.8.0"));
+        assertFalse(Host.validarMascara("255.255.25.0"));
+        assertFalse(Host.validarMascara("255.255.250.0"));
+
+        //Pruebas en el cuarto octeto
+        assertTrue(Host.validarMascara("255.255.255.255"));
+        assertTrue(Host.validarMascara("255.255.255.254"));
+        assertTrue(Host.validarMascara("255.255.255.192"));
+        assertTrue(Host.validarMascara("255.255.255.128"));
+        assertFalse(Host.validarMascara("255.255.255.127"));
+        assertFalse(Host.validarMascara("255.255.255.257"));
+        assertFalse(Host.validarMascara("255.255.255.194"));
 
         assertFalse(Host.validarMascara(""));
     }    
