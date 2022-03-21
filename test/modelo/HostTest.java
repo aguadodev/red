@@ -13,7 +13,15 @@ public class HostTest {
     @Test
     public void validarMac() {
         assertTrue(Host.validarMac("FFFFFFFFFFFF"));
-
+        assertTrue(Host.validarMac("5C260A242A60"));
+        assertTrue(Host.validarMac("5C:26:0A:24:2A:60"));
+        assertTrue(Host.validarMac("5C-26-0A-24-2A-60"));
+        assertTrue(Host.validarMac("5C26.0A24.2A60"));
+        
+        assertFalse(Host.validarMac("5C260A242A6G"));
+        assertFalse(Host.validarMac("5C:26:0A:24:2A.60"));
+        assertFalse(Host.validarMac("5C-26-0A-24-2A-609"));
+        assertFalse(Host.validarMac("5C26.0A24..2A60"));
         assertFalse(Host.validarMac(""));
     }
     
