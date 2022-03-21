@@ -42,10 +42,19 @@ public class Host {
             this.gateway = gateway;
     }
 
-    /* M�TODOS EST�TICOS */
-    public static boolean validarMac(String mac) {        
-        return true;
-    }    
+    /* MÉTODOS ESTÁTICOS */
+    public static boolean validarMac(String mac) {       
+        String regex1 = "[0-9a-fA-F]{12}";
+        String regex2 = "([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}";
+        String regex3 = "([0-9a-fA-F]{2}-){5}[0-9a-fA-F]{2}";
+        String regex4 = "([0-9a-fA-F]{4}\\.){2}[0-9a-fA-F]{4}";
+        
+        if (mac.matches(regex1) || mac.matches(regex2) || 
+            mac.matches(regex3) || mac.matches(regex4))
+            return true;
+        else
+            return false;
+    }     
 
     public static boolean validarIp(String ip) {        
         return ip.matches("((?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))");
@@ -55,16 +64,16 @@ public class Host {
         return true;
     }        
 
-    /* M�TODOS DE INSTANCIA */
+    /* MÉTODOS DE INSTANCIA */
     @Override
     public String toString() {
         String cad = "";
         cad += "HOST\n";
         cad += "====\n";
         cad += "Nombre: " + nombre + "\n";
-        cad += "Direcci�n MAC: " + mac + "\n";
-        cad += "Direcci�n IP: " + ip + "\n";
-        cad += "M�scara: " + mascara + "\n";
+        cad += "Dirección MAC: " + mac + "\n";
+        cad += "Dirección IP: " + ip + "\n";
+        cad += "Máscara: " + mascara + "\n";
         cad += "Puerta de enlace: " + gateway + "\n";
         cad += "Servidor/es DNS: " + Arrays.toString(dns) + "\n";
         
