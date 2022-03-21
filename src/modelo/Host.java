@@ -42,7 +42,7 @@ public class Host {
             this.gateway = gateway;
     }
 
-    /* MÉTODOS ESTÁTICOS */
+    /* Mï¿½TODOS ESTï¿½TICOS */
     public static boolean validarMac(String mac) {        
         return true;
     }    
@@ -55,23 +55,44 @@ public class Host {
         return true;
     }        
 
-    /* MÉTODOS DE INSTANCIA */
+    /* Mï¿½TODOS DE INSTANCIA */
     @Override
     public String toString() {
         String cad = "";
         cad += "HOST\n";
         cad += "====\n";
         cad += "Nombre: " + nombre + "\n";
-        cad += "Dirección MAC: " + mac + "\n";
-        cad += "Dirección IP: " + ip + "\n";
-        cad += "Máscara: " + mascara + "\n";
+        cad += "Direcciï¿½n MAC: " + mac + "\n";
+        cad += "Direcciï¿½n IP: " + ip + "\n";
+        cad += "Mï¿½scara: " + mascara + "\n";
         cad += "Puerta de enlace: " + gateway + "\n";
         cad += "Servidor/es DNS: " + Arrays.toString(dns) + "\n";
         
         return cad;
     }
         
-    
+    boolean addServidorDNS(String IpServidor) {
+        if (!validarIp(IpServidor)) return false;
+        if (dns[0] != null) {
+            dns[0] = IpServidor;
+        } else if (dns[1] != null) {
+            dns[1] = IpServidor;
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    boolean delServidorDNS(String IpServidor) {
+        if (dns[0].equals(IpServidor)) {
+            dns[0] = null;
+        } else if (dns[1].equals(IpServidor)) {
+            dns[1] = null;
+        } else {
+            return false;
+        }
+        return true;
+    }
     
     
 }
